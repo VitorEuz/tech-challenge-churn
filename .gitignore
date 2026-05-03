@@ -1,0 +1,44 @@
+# Ambiente virtual
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Pytest
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# MLflow
+mlruns/
+mlflow.db
+
+# Modelos treinados
+models/*.pth
+models/*.pkl
+
+# Dados brutos
+# data/raw/*.csv
+
+# Build / dist
+build/
+dist/
+*.egg-info/
+
+# Pyenv
+.python-version

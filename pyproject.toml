@@ -1,0 +1,32 @@
+[project]
+name = "tech-challenge-churn"
+version = "0.1.0"
+description = "Churn prediction with MLP and ML pipeline"
+authors = [
+    {name = "Vitor Euzebio"},
+    {name = "Paulo Sergio"},
+    {name = "Enzo Lucato"}
+]
+requires-python = ">=3.10"
+
+dependencies = [
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "torch",
+    "mlflow",
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "joblib",
+    "pytest",
+    "ruff",
+    "matplotlib",
+    "seaborn"
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 88
