@@ -8,15 +8,19 @@
 
 ---
 
-## Objetivo
+## Visão Geral
 
-Desenvolver um sistema completo de previsão de churn de clientes utilizando Machine Learning, incluindo análise de dados, modelagem, avaliação e API.
+Este projeto tem como objetivo desenvolver um pipeline completo de Machine Learning para previsão de churn de clientes em uma empresa de telecomunicações.
+
+A solução contempla desde a análise exploratória dos dados até a disponibilização de uma API para consumo do modelo, incluindo rastreamento de experimentos com MLflow e validação por testes automatizados.
 
 ---
 
 ## Problema de Negócio
 
-Churn representa clientes que cancelam o serviço. O objetivo é identificar clientes com maior probabilidade de cancelamento.
+Churn representa clientes que cancelam um serviço. A antecipação desse comportamento permite ações estratégicas de retenção, reduzindo perdas financeiras e aumentando o valor do cliente ao longo do tempo.
+
+O modelo desenvolvido busca identificar clientes com maior probabilidade de cancelamento com base em suas características.
 
 ---
 
@@ -73,15 +77,7 @@ python -m venv .venv
 ### Instalar dependências
 
 ```bash
-pip install pandas numpy scikit-learn torch mlflow fastapi uvicorn joblib pytest ruff seaborn matplotlib
-```
-
----
-
-## Rodar testes
-
-```bash
-python -m pytest
+pip install -r requirements.txt
 ```
 
 ---
@@ -90,6 +86,16 @@ python -m pytest
 
 ```bash
 python -m src.models.train_model
+```
+
+Isso irá gerar os artefatos do modelo na pasta `models/`.
+
+---
+
+## Rodar testes
+
+```bash
+python -m pytest
 ```
 
 ---
@@ -130,9 +136,9 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## Teste
+## Teste da API
 
-### Churn
+### Cliente com churn
 
 ```json
 {
@@ -160,7 +166,7 @@ http://127.0.0.1:8000/docs
 
 ---
 
-### No Churn
+### Cliente sem churn
 
 ```json
 {
@@ -188,6 +194,17 @@ http://127.0.0.1:8000/docs
 
 ---
 
-## Conclusão
+## Considerações Finais
 
-Projeto completo com pipeline de Machine Learning, MLflow e API funcional.
+O projeto entrega uma solução completa de Machine Learning aplicada a um problema real de negócio, incluindo:
+
+- Pipeline de dados estruturado  
+- Modelagem com rede neural (MLP)  
+- Comparação com modelos baseline  
+- Monitoramento de experimentos com MLflow  
+- API para consumo do modelo  
+- Testes automatizados garantindo confiabilidade  
+
+A arquitetura foi construída seguindo boas práticas de engenharia de Machine Learning, visando reprodutibilidade, organização e facilidade de manutenção.
+
+---
