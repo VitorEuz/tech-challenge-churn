@@ -167,7 +167,7 @@ All checks passed!
 
 ## Executar os testes automatizados
 
-Treinar o mode:
+Treinar o modelo:
 
 ```bash
 python -m src.models.train_model
