@@ -29,8 +29,7 @@ mlruns/
 mlflow.db
 
 # Modelos treinados
-models/*.pth
-models/*.pkl
+models/
 
 # Dados brutos
 # data/raw/*.csv
