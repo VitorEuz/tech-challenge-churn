@@ -119,6 +119,7 @@ cd tech-challenge-churn
 ## 2. Criar o ambiente virtual
 
 ```bash
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 python -m venv .venv
 ```
 
