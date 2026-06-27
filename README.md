@@ -2,48 +2,66 @@
 
 ## Integrantes
 
-- Vitor Euzebio  
-- Paulo Sergio  
-- Enzo Lucato  
+* Vitor Euzebio
+* Paulo Sergio
+* Enzo Lucato
 
 ---
 
-## Visão Geral
+# Visão Geral
 
-Este projeto tem como objetivo desenvolver um pipeline completo de Machine Learning para previsão de churn de clientes em uma empresa de telecomunicações.
+Este projeto apresenta uma solução completa de Machine Learning para previsão de churn de clientes em uma empresa de telecomunicações.
 
-A solução contempla desde a análise exploratória dos dados até a disponibilização de uma API para consumo do modelo, incluindo rastreamento de experimentos com MLflow e validação por testes automatizados.
+A aplicação contempla todo o ciclo de desenvolvimento de um modelo preditivo, desde o carregamento e tratamento dos dados até a disponibilização do modelo por meio de uma API REST.
+
+O projeto também inclui:
+
+* Análise exploratória dos dados (EDA);
+* Modelos baseline para comparação;
+* Rede Neural MLP implementada em PyTorch;
+* Rastreamento de experimentos utilizando MLflow;
+* Testes automatizados;
+* API desenvolvida com FastAPI.
 
 ---
 
-## Problema de Negócio
+# Problema de Negócio
 
-Churn representa clientes que cancelam um serviço. A antecipação desse comportamento permite ações estratégicas de retenção, reduzindo perdas financeiras e aumentando o valor do cliente ao longo do tempo.
+Churn representa clientes que cancelam um serviço.
 
-O modelo desenvolvido busca identificar clientes com maior probabilidade de cancelamento com base em suas características.
+Identificar clientes com maior probabilidade de cancelamento permite que a empresa realize ações preventivas de retenção, reduzindo perdas financeiras e aumentando o valor do cliente ao longo do tempo.
 
 ---
 
-## Estrutura do Projeto
+# Tecnologias Utilizadas
 
-```bash
+* Python 3.13
+* Pandas
+* NumPy
+* Scikit-Learn
+* PyTorch
+* FastAPI
+* MLflow
+* Pytest
+* Ruff
+
+---
+
+# Estrutura do Projeto
+
+```text
 tech-challenge-churn/
 
 ├── data/
 │   └── raw/
 │       └── telco_churn.csv
 │
-├── models/
-│   ├── best_mlp.pth
-│   ├── scaler.pkl
-│   └── feature_names.pkl
-│
-├── notebooks/
-│   └── EDA.ipynb
-│
 ├── docs/
 │   ├── model_card.md
 │   └── monitoring.md
+│
+├── notebooks/
+│   └── EDA.ipynb
 │
 ├── src/
 │   ├── api/
@@ -55,26 +73,74 @@ tech-challenge-churn/
 │
 ├── Makefile
 ├── pyproject.toml
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Como executar
+# Pré-requisitos
 
-### Criar ambiente
+O projeto foi desenvolvido e testado utilizando:
+
+* Python 3.13
+* Git
+
+Verifique sua versão do Python:
+
+```bash
+python --version
+```
+
+Resultado esperado:
+
+```text
+Python 3.13.x
+```
+
+---
+
+# Instalação
+
+## 1. Clonar o repositório
+
+```bash
+git clone https://github.com/VitorEuz/tech-challenge-churn.git
+```
+
+Entre na pasta:
+
+```bash
+cd tech-challenge-churn
+```
+
+---
+
+## 2. Criar o ambiente virtual
 
 ```bash
 python -m venv .venv
 ```
 
-### Ativar
+---
+
+## 3. Ativar o ambiente virtual
+
+### Windows
 
 ```bash
 .venv\Scripts\activate
 ```
 
-### Instalar dependências
+### Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+---
+
+## 4. Instalar as dependências
 
 ```bash
 pip install -r requirements.txt
@@ -82,63 +148,141 @@ pip install -r requirements.txt
 
 ---
 
-## Treinar modelo
+# Validação da Instalação
+
+## Verificar qualidade do código
 
 ```bash
-python -m src.models.train_model
+python -m ruff check .
 ```
 
-Isso irá gerar os artefatos do modelo na pasta `models/`.
+Resultado esperado:
+
+```text
+All checks passed!
+```
 
 ---
 
-## Rodar testes
+## Executar os testes automatizados
 
 ```bash
 python -m pytest
 ```
 
+Resultado esperado:
+
+```text
+4 passed
+```
+
 ---
 
-## Baselines
+# Treinar o Modelo
+
+Execute:
+
+```bash
+python -m src.models.train_model
+```
+
+Durante o treinamento serão exibidas as métricas de treinamento e avaliação do modelo.
+
+Ao final serão gerados automaticamente os artefatos necessários para inferência.
+
+O treinamento também registra automaticamente:
+
+* parâmetros;
+* métricas;
+* modelo treinado;
+* artefatos;
+
+no MLflow.
+
+---
+
+# Executar os Modelos Baseline
+
+Para comparar o desempenho da MLP com modelos clássicos execute:
 
 ```bash
 python -m src.models.baseline_model
 ```
 
+Serão avaliados:
+
+* Dummy Classifier
+* Logistic Regression
+* Random Forest
+
 ---
 
-## MLflow
+# MLflow
+
+Inicie o servidor do MLflow:
 
 ```bash
 mlflow ui
 ```
 
-Acesse:
+Abra no navegador:
 
-```
+```text
 http://127.0.0.1:5000
 ```
 
+No MLflow é possível visualizar:
+
+* Experimentos
+* Métricas
+* Parâmetros
+* Modelos registrados
+* Comparação entre modelos
+
 ---
 
-## API
+# Executar a API
+
+Inicie a API:
 
 ```bash
 python -m uvicorn src.api.main:app --reload
 ```
 
-Acesse:
+Abra a documentação automática:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+Endpoints disponíveis:
+
+* GET `/health`
+* POST `/predict`
+
+---
+
+# Teste da API
+
+## Endpoint Health
+
+Execute o endpoint:
 
 ```
-http://127.0.0.1:8000/docs
+GET /health
+```
+
+Resposta esperada:
+
+```json
+{
+    "status": "ok"
+}
 ```
 
 ---
 
-## Teste da API
-
-### Cliente com churn
+## Cliente com Churn
 
 ```json
 {
@@ -164,9 +308,19 @@ http://127.0.0.1:8000/docs
 }
 ```
 
+Resposta esperada (valores aproximados):
+
+```json
+{
+  "prediction": 1,
+  "churn_probability": 0.94,
+  "label": "Churn"
+}
+```
+
 ---
 
-### Cliente sem churn
+## Cliente sem Churn
 
 ```json
 {
@@ -192,19 +346,30 @@ http://127.0.0.1:8000/docs
 }
 ```
 
----
+Resposta esperada (valores aproximados):
 
-## Considerações Finais
-
-O projeto entrega uma solução completa de Machine Learning aplicada a um problema real de negócio, incluindo:
-
-- Pipeline de dados estruturado  
-- Modelagem com rede neural (MLP)  
-- Comparação com modelos baseline  
-- Monitoramento de experimentos com MLflow  
-- API para consumo do modelo  
-- Testes automatizados garantindo confiabilidade  
-
-A arquitetura foi construída seguindo boas práticas de engenharia de Machine Learning, visando reprodutibilidade, organização e facilidade de manutenção.
+```json
+{
+  "prediction": 0,
+  "churn_probability": 0.10,
+  "label": "No Churn"
+}
+```
 
 ---
+
+# Considerações Finais
+
+Este projeto entrega uma solução completa para previsão de churn utilizando técnicas modernas de Machine Learning.
+
+A solução contempla:
+
+* Pipeline completo de processamento de dados;
+* Modelos baseline para comparação;
+* Rede Neural MLP em PyTorch;
+* Rastreamento de experimentos com MLflow;
+* API REST para inferência;
+* Testes automatizados;
+* Código validado com Ruff.
+
+Toda a aplicação foi organizada seguindo boas práticas de Engenharia de Machine Learning, buscando garantir reprodutibilidade, organização, escalabilidade e facilidade de manutenção.
