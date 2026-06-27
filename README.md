@@ -165,27 +165,6 @@ All checks passed!
 
 ---
 
-## Executar os testes automatizados
-
-Treinar o modelo:
-
-```bash
-python -m src.models.train_model
-```
-Executar os testes:
-
-```bash
-python -m pytest
-```
-
-Resultado esperado:
-
-```text
-4 passed
-```
-
----
-
 # Treinar o Modelo
 
 Execute:
@@ -206,6 +185,20 @@ O treinamento também registra automaticamente:
 * artefatos;
 
 no MLflow.
+
+---
+
+## Executar os testes automatizados
+
+```bash
+python -m pytest
+```
+
+Resultado esperado:
+
+```text
+4 passed
+```
 
 ---
 
